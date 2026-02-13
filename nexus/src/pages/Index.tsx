@@ -1,0 +1,34 @@
+import { useState, useEffect } from "react";
+import DashboardLayout from "@/components/DashboardLayout";
+import DashboardCards from "@/components/DashboardCards";
+import VisualizationArea from "@/components/VisualizationArea";
+
+export default function Index() {
+  const [totalFlights, setTotalFlights] = useState(1247);
+  const [activeAlerts, setActiveAlerts] = useState(3);
+  const [safetyScore, setSafetyScore] = useState(98.7);
+
+  // Simulate real-time data updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTotalFlights((prev) => prev + Math.floor(Math.random() * 10) - 5);
+      setActiveAlerts(Math.floor(Math.random() * 5));
+      setSafetyScore(
+        Math.max(95, Math.min(99.9, 98 + Math.random() * 1.5))
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <DashboardLayout>
+      <DashboardCards
+        totalFlights={totalFlights}
+        activeAlerts={activeAlerts}
+        safetyScore={Number(safetyScore.toFixed(1))}
+      />
+      <VisualizationArea />
+    </DashboardLayout>
+  );
+}
