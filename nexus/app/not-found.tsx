@@ -8,6 +8,6 @@ export default function NotFound() {
           Return to Home
         </a>
       </div>
-    </div>
+    </div> 
   );
 }
