@@ -147,7 +147,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                       }}
                     />
                     <div className="absolute inset-[2px] rounded-full bg-[#000000] flex items-center justify-center text-[14px] font-bold text-[#00FFFF]">
-                    
+                      OF
                     </div>
                   </div>
                   <div className="flex-1">
