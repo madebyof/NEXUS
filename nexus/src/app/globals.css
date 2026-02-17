@@ -5,7 +5,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 @layer base {
   /**
    * Tailwind CSS theme
