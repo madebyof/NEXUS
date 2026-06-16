@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Head from 'next/head';
-import { Fingerprint, Eye, Activity, Cpu, ShieldCheck, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Fingerprint, Eye, Activity, Cpu, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 export default function NexusLogin() {
@@ -53,7 +53,7 @@ export default function NexusLogin() {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
         <style>{`
           body {
             background-color: #000000;
@@ -73,7 +73,9 @@ export default function NexusLogin() {
             background: linear-gradient(90deg, transparent, #00ffff, transparent);
             box-shadow: 0 0 15px #00ffff;
           }
-          .bionic-glow { text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); }
+          .bionic-glow {
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4);
+          }
           .neural-network-bg {
             background-color: #000000;
             background-size: cover;
@@ -84,53 +86,81 @@ export default function NexusLogin() {
               linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(5, 8, 20, 1));
           }
           .font-space { font-family: 'Space Grotesk', sans-serif; }
+          .font-orbitron { font-family: 'Orbitron', sans-serif; }
         `}</style>
       </Head>
 
       <div className="neural-network-bg h-screen w-screen flex flex-col items-center justify-between text-white overflow-hidden relative">
+
+        {/* DESIGN NEXUS : grille hexagonale */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <svg className="w-full h-full">
+            <defs>
+              <pattern id="hexGrid" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+                <path d="M30 0 L60 15 L60 37 L30 52 L0 37 L0 15 Z" fill="none" stroke="#00FFFF" strokeWidth="0.5" opacity="0.5" />
+              </pattern>
+              <radialGradient id="cosmicGlow" cx="50%" cy="50%">
+                <stop offset="0%" stopColor="#FF00FF" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#00FFFF" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hexGrid)" />
+            <circle cx="50%" cy="50%" r="40%" fill="url(#cosmicGlow)" />
+          </svg>
+        </div>
+
+        {/* DESIGN NEXUS : 4 bordures lumineuses */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00FFFF] to-transparent opacity-80" />
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF00FF] to-transparent opacity-80" />
+        <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-[#00FF88] to-transparent opacity-70" />
+        <div className="absolute right-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-[#FF00FF] to-transparent opacity-70" />
         
         {/* Feedback Overlay */}
         {feedback.message && (
           <div className="absolute top-10 z-[100] animate-in fade-in slide-in-from-top-4 duration-500">
             <div className={`flex items-center gap-3 px-6 py-4 rounded-xl border ${feedback.type === 'error' ? 'bg-[#FFB80022] border-[#FFB80055] text-[#FFB800]' : 'bg-[#00FF8822] border-[#00FF8855] text-[#00FF88]'} backdrop-blur-md`}>
-                {feedback.type === 'error' ? <AlertCircle size={20} /> : <CheckCircle2 size={20} />}
-              <span className="font-space text-[12px] uppercase tracking-widest">{feedback.message}</span>
+              {feedback.type === 'error' ? <AlertCircle size={20} /> : <CheckCircle2 size={20} />}
+              <span className="font-orbitron text-[12px] uppercase tracking-widest">{feedback.message}</span>
             </div>
           </div>
         )}
 
-        <main className="flex-grow flex items-center justify-center w-full px-[40px] max-h-screen">
-            <div className="glass-panel max-w-lg w-full rounded-[1.5rem] p-6 flex flex-col space-y-4 relative overflow-hidden border border-[#00ffff33] shadow-[0_0_50px_rgba(0,255,255,0.08)]">
+        <main className="flex-grow flex items-center justify-center w-full px-[40px] max-h-screen relative z-10">
+          <div className="glass-panel max-w-lg w-full rounded-[1.5rem] p-6 flex flex-col space-y-4 relative overflow-hidden border border-[#00ffff33] shadow-[0_0_50px_rgba(0,255,255,0.08)]">
+
+            {/* DESIGN NEXUS : scanline haut de carte */}
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00FFFF] to-transparent opacity-60" />
             
             <div className="text-center space-y-1">
-                <h1 className="font-space text-[40px] font-bold text-[#00FFFF] tracking-tighter bionic-glow">NEURAL_OS</h1>
-                <p className="font-space text-[10px] font-bold text-[#00FFFF88] uppercase tracking-widest opacity-80">Diagnostic & Authentication Link</p>
+              <h1 className="font-orbitron text-[40px] font-bold text-[#00FFFF] tracking-tighter bionic-glow">NEURAL_OS</h1>
+              <p className="font-orbitron text-[10px] font-bold text-[#00FFFF88] uppercase tracking-widest opacity-80">Diagnostic & Authentication Link</p>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
-                <div className="glass-panel p-3 rounded-lg border border-[#00ffff22] flex items-center justify-between">
+              <div className="glass-panel p-3 rounded-lg border border-[#00ffff22] flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <Activity size={14} className="text-[#00FFFF]" />
-                    <span className="font-space text-[9px] text-[#00FFFF88]">PHYSICAL LINK</span>
+                  <Activity size={14} className="text-[#00FFFF]" />
+                  <span className="font-orbitron text-[9px] text-[#00FFFF88]">PHYSICAL LINK</span>
                 </div>
-                  <span className="text-[10px] font-bold text-[#00FF88]">ACTIVE</span>
+                <span className="font-orbitron text-[10px] font-bold text-[#00FF88]">ACTIVE</span>
               </div>
-                <div className="glass-panel p-3 rounded-lg border border-[#00ffff22] flex items-center justify-between">
+              <div className="glass-panel p-3 rounded-lg border border-[#00ffff22] flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <Cpu size={14} className="text-[#00FFFF]" />
-                    <span className="font-space text-[9px] text-[#00FFFF88]">CORE HARDWARE</span>
+                  <Cpu size={14} className="text-[#00FFFF]" />
+                  <span className="font-orbitron text-[9px] text-[#00FFFF88]">CORE HARDWARE</span>
                 </div>
-                  <span className="text-[10px] font-bold text-[#00FFFF]">READY</span>
+                <span className="font-orbitron text-[10px] font-bold text-[#00FFFF]">READY</span>
               </div>
             </div>
 
             <div className="space-y-4">
               <div className="flex flex-col space-y-1">
-                  <label className="font-space text-[10px] font-bold text-[#00FFFF] uppercase ml-1">Access Protocol</label>
+                <label className="font-orbitron text-[10px] font-bold text-[#00FFFF] uppercase ml-1 tracking-[0.15em]">Access Protocol</label>
                 <div className="relative group">
-                    <Fingerprint className="absolute left-4 top-1/2 -translate-y-1/2 text-[#00FFFF] opacity-60" size={20} />
+                  <Fingerprint className="absolute left-4 top-1/2 -translate-y-1/2 text-[#00FFFF] opacity-60" size={20} />
                   <input 
-                      className="w-full bg-[#00000088] border-b border-[#00ffff22] focus:border-[#00ffff] text-[#e0e3e5] font-sans text-[14px] py-3 pl-12 pr-4 outline-none transition-all placeholder:text-[#00ffff55]" 
+                    className="w-full bg-[#00000088] border-b border-[#00ffff22] focus:border-[#00ffff] text-[#e0e3e5] font-sans text-[14px] py-3 pl-12 pr-4 outline-none transition-all placeholder:text-[#00ffff55]" 
                     placeholder="Neural ID" 
                     type="text" 
                     value={neuralId}
@@ -164,13 +194,13 @@ export default function NexusLogin() {
               <button 
                 onClick={handleInitializeSession}
                 disabled={loading}
-                className="bg-gradient-to-r from-[#00FFFF] to-[#00FF88] hover:from-[#00FFFF] hover:to-[#00FFAA] text-[#000000] font-space text-[10px] font-bold py-4 rounded-[0.75rem] uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(0,255,255,0.35)] active:scale-95"
+                className="bg-gradient-to-r from-[#00FFFF] to-[#00FF88] hover:from-[#00FFFF] hover:to-[#00FFAA] text-[#000000] font-orbitron text-[10px] font-bold py-4 rounded-[0.75rem] uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(0,255,255,0.35)] active:scale-95"
               >
                 {loading ? "INITIALIZING..." : "INITIALIZE SESSION"}
               </button>
               <div className="flex justify-between items-center px-2">
-                <button className="font-space text-[10px] font-bold text-[#00FFFF88] hover:text-[#00FFFF] transition-colors uppercase">Emergency Override</button>
-                <button className="font-space text-[10px] font-bold text-[#00FFFF88] hover:text-[#00FFFF] transition-colors uppercase">System Status</button>
+                <button className="font-orbitron text-[10px] font-bold text-[#00FFFF88] hover:text-[#00FFFF] transition-colors uppercase tracking-[0.1em]">Emergency Override</button>
+                <button className="font-orbitron text-[10px] font-bold text-[#00FFFF88] hover:text-[#00FFFF] transition-colors uppercase tracking-[0.1em]">System Status</button>
               </div>
             </div>
 
@@ -180,13 +210,13 @@ export default function NexusLogin() {
           </div>
         </main>
 
-        <footer className="w-full py-6 flex flex-col items-center justify-center space-y-2 border-t border-[#00ffff12] bg-transparent">
+        <footer className="w-full py-6 flex flex-col items-center justify-center space-y-2 border-t border-[#00ffff12] bg-transparent relative z-10">
           <div className="flex space-x-6">
-            <a className="font-space text-[9px] uppercase tracking-widest text-[#00FFFF66] hover:text-[#00FFFF] transition-colors opacity-80" href="#">System Logs</a>
-            <a className="font-space text-[9px] uppercase tracking-widest text-[#00FFFF66] hover:text-[#00FFFF] transition-colors opacity-80" href="#">Core Protocol</a>
-            <a className="font-space text-[9px] uppercase tracking-widest text-[#00FFFF66] hover:text-[#00FFFF] transition-colors opacity-80" href="#">Contact Uplink</a>
+            <a className="font-orbitron text-[9px] uppercase tracking-widest text-[#00FFFF66] hover:text-[#00FFFF] transition-colors opacity-80" href="#">System Logs</a>
+            <a className="font-orbitron text-[9px] uppercase tracking-widest text-[#00FFFF66] hover:text-[#00FFFF] transition-colors opacity-80" href="#">Core Protocol</a>
+            <a className="font-orbitron text-[9px] uppercase tracking-widest text-[#00FFFF66] hover:text-[#00FFFF] transition-colors opacity-80" href="#">Contact Uplink</a>
           </div>
-          <p className="font-space text-[9px] uppercase tracking-widest text-[#00FFFF88] opacity-80">© 2140 NEURAL_OS | QUANTUM ENCRYPTION ACTIVE</p>
+          <p className="font-orbitron text-[9px] uppercase tracking-widest text-[#00FFFF88] opacity-80">© 2140 NEURAL_OS | QUANTUM ENCRYPTION ACTIVE</p>
         </footer>
 
         <div className="fixed top-20 right-20 w-96 h-96 bg-[#00ffff]/10 rounded-full blur-[120px] -z-10"></div>
