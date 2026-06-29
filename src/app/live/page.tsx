@@ -236,14 +236,24 @@ export default function NeuralOS() {
         <div className="fixed bottom-20 left-20 w-80 h-80 bg-[#ff00ff]/8 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="flex h-screen overflow-hidden relative z-10">
-          {/* Sidebar Component */}
-          {!sidebarCollapsed && <Sidebar pulsePhase={0} />}
+          
+          {/* Sidebar container géré avec Tailwind pour l'animation fluide */}
+          <div 
+            className={`transition-all duration-300 ease-in-out h-full overflow-hidden ${
+              sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
+            }`}
+          >
+            <Sidebar pulsePhase={0} />
+          </div>
 
-          {/* Toggle Sidebar Button */}
+          {/* Toggle Sidebar Button - Se positionne parfaitement par est lié à l'état de la transition */}
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className="absolute top-1/2 z-50 w-8 h-16 bg-gradient-to-r from-[#00FFFF22] to-transparent border-y border-r border-[#00FFFF44] rounded-r-lg flex items-center justify-center cursor-pointer hover:from-[#00FFFF44] transition-all transform -translate-y-1/2 pointer-events-auto"
-            style={{ left: sidebarCollapsed ? "0px" : "320px" }}
+            style={{ 
+              left: sidebarCollapsed ? "0px" : "320px",
+              transition: "left 0.3s ease-in-out" // Aligné sur la même durée que le container
+            }}
           >
             <ChevronRight
               className="w-4 h-4 text-[#00FFFF] transition-transform duration-300"
