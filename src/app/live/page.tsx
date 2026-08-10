@@ -414,31 +414,31 @@ export default function NeuralOS() {
                     <div ref={logContainerRef} className="flex-1 overflow-y-auto p-4 space-y-3">
                       <div className="flex gap-3">
                         <span className="font-orbitron text-[10px] text-[#00FFFF44]">[14:22:01]</span>
-                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">INCOMING: 192.168.1.45 >> SECURED</span>
+                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">INCOMING: 192.168.1.45 &gt;&gt; SECURED</span>
                       </div>
                       <div className="flex gap-3">
                         <span className="font-orbitron text-[10px] text-[#00FFFF44]">[14:22:04]</span>
-                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">HANDSHAKE: NODE_04 >> VERIFIED</span>
+                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">HANDSHAKE: NODE_04 &gt;&gt; VERIFIED</span>
                       </div>
                       <div className="flex gap-3">
                         <span className="font-orbitron text-[10px] text-[#00FFFF44]">[14:22:12]</span>
-                        <span className="font-orbitron text-[10px] text-[#FF3366]">TIMEOUT: NODE_88 >> RETRYING...</span>
+                        <span className="font-orbitron text-[10px] text-[#FF3366]">TIMEOUT: NODE_88 &gt;&gt; RETRYING...</span>
                       </div>
                       <div className="flex gap-3">
                         <span className="font-orbitron text-[10px] text-[#00FFFF44]">[14:22:15]</span>
-                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">ENCRYPTION: AES-256 >> STABLE</span>
+                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">ENCRYPTION: AES-256 &gt;&gt; STABLE</span>
                       </div>
                       <div className="flex gap-3">
                         <span className="font-orbitron text-[10px] text-[#00FFFF44]">[14:22:19]</span>
-                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">DIVERGENCE: LOAD_BALANCE >> RE-ROUTE</span>
+                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">DIVERGENCE: LOAD_BALANCE &gt;&gt; RE-ROUTE</span>
                       </div>
                       <div className="flex gap-3">
                         <span className="font-orbitron text-[10px] text-[#00FFFF44]">[14:22:25]</span>
-                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">HEARTBEAT: ALL_SYSTEMS >> OK</span>
+                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">HEARTBEAT: ALL_SYSTEMS &gt;&gt; OK</span>
                       </div>
                       <div className="flex gap-3">
                         <span className="font-orbitron text-[10px] text-[#00FFFF44]">[14:22:31]</span>
-                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">INCOMING: 10.0.4.122 >> AUTH_REQ</span>
+                        <span className="font-orbitron text-[10px] text-[#00FFFF88]">INCOMING: 10.0.4.122 &gt;&gt; AUTH_REQ</span>
                       </div>
                     </div>
                   </div>
