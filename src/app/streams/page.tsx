@@ -623,7 +623,7 @@ export default function DataStreams() {
                                         <div className="flex gap-4">
                                             <div className="text-right">
                                                 <div className="font-orbitron text-[8px] text-[#00FFFF88]">THROUGHPUT</div>
-                                                <div ref={throughputRef} className="font-orbitron text-[12px] text-[#00FFFF]" style={{ textShadow: '0 0 8px rgba(0,255,255,0.6)' }}>842 Mbps</div>
+                                                <span ref={throughputRef} className="font-orbitron text-[12px] text-[#00FFFF]" style={{ textShadow: '0 0 8px rgba(0,255,255,0.6)' }}>842 Mbps</span>
                                             </div>
                                             <div className="text-right">
                                                 <div className="font-orbitron text-[8px] text-[#00FFFF88]">DROP_RATE</div>
