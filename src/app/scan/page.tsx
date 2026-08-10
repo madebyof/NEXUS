@@ -180,7 +180,7 @@ export default function NodeAlpha09() {
             <div className="node-alpha-root font-orbitron text-[#e0e3e5] overflow-hidden h-screen relative flex">
 
                 {/* Inclusion de la Sidebar */}
-                <Sidebar />
+                <Sidebar pulsePhase={0} />
 
                 {/* Conteneur principal ajustable avec ChevronRight importé si besoin */}
                 <div className="flex-1 h-full relative overflow-hidden">
