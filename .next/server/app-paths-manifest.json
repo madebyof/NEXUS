@@ -1,7 +1,5 @@
 {
-  "/live/page": "app/live/page.js",
-  "/alerts/page": "app/alerts/page.js",
-  "/scan/page": "app/scan/page.js",
-  "/predictive/page": "app/predictive/page.js",
-  "/weather/page": "app/weather/page.js"
+  "/streams/page": "app/streams/page.js",
+  "/core/page": "app/core/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }
