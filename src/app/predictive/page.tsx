@@ -47,76 +47,77 @@ export default function PredictiveEngine() {
         <>
             <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
 
-            <style jsx global>{`
-        :root {
-          --neon-cyan: #00FFFF;
-          --neon-magenta: #FF00FF;
-          --alert-amber: #FFB800;
-        }
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .font-code { font-family: 'JetBrains Mono', monospace; }
+            <style dangerouslySetInnerHTML={{
+                __html: `
+  :root {
+    --neon-cyan: #00FFFF;
+    --neon-magenta: #FF00FF;
+    --alert-amber: #FFB800;
+  }
+  .font-orbitron { font-family: 'Orbitron', sans-serif; }
+  .font-code { font-family: 'JetBrains Mono', monospace; }
 
-        .glass-panel {
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          background: rgba(0, 0, 0, 0.60);
-          border: 1px solid rgba(0, 255, 255, 0.15);
-          box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
-        }
+  .glass-panel {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.60);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+  }
 
-        .glitch-text {
-          animation: glitch 2s infinite;
-        }
-        @keyframes glitch {
-          0% { transform: translate(0); }
-          20% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--neon-magenta); }
-          40% { transform: translate(-2px, -2px); text-shadow: -2px 0 var(--neon-cyan); }
-          60% { transform: translate(2px, 2px); }
-          80% { transform: translate(2px, -2px); }
-          100% { transform: translate(0); }
-        }
+  .glitch-text {
+    animation: glitch 2s infinite;
+  }
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--neon-magenta); }
+    40% { transform: translate(-2px, -2px); text-shadow: -2px 0 var(--neon-cyan); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
 
-        .pulse-cyan {
-          animation: pulse-cyan 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse-cyan {
-          0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px var(--neon-cyan)); }
-          50% { opacity: .7; filter: drop-shadow(0 0 15px var(--neon-cyan)); }
-        }
+  .pulse-cyan {
+    animation: pulse-cyan 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse-cyan {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px var(--neon-cyan)); }
+    50% { opacity: .7; filter: drop-shadow(0 0 15px var(--neon-cyan)); }
+  }
 
-        .angular-cut {
-          clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
-        }
+  .angular-cut {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+  }
 
-        @keyframes scan {
-          0% { top: 0%; }
-          100% { top: 100%; }
-        }
-        .scanline-fx {
-          width: 100%; height: 2px;
-          background: linear-gradient(to right, transparent, #00FFFF, transparent);
-          box-shadow: 0 0 15px #00FFFF;
-          position: fixed; top: 0; left: 0;
-          animation: scan 8s linear infinite;
-          z-index: 100; pointer-events: none; opacity: 0.15;
-        }
+  @keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+  }
+  .scanline-fx {
+    width: 100%; height: 2px;
+    background: linear-gradient(to right, transparent, #00FFFF, transparent);
+    box-shadow: 0 0 15px #00FFFF;
+    position: fixed; top: 0; left: 0;
+    animation: scan 8s linear infinite;
+    z-index: 100; pointer-events: none; opacity: 0.15;
+  }
 
-        @keyframes dash { to { stroke-dashoffset: -200; } }
-        .animate-dash { animation: dash 20s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -200; } }
+  .animate-dash { animation: dash 20s linear infinite; }
 
-        .predictive-root {
-          background-color: #000000;
-          background-image:
-            radial-gradient(circle at top, rgba(0,255,255,0.08), transparent 30%),
-            radial-gradient(circle at bottom right, rgba(255,0,255,0.06), transparent 25%),
-            linear-gradient(180deg, #000000, #050814);
-        }
+  .predictive-root {
+    background-color: #000000;
+    background-image:
+      radial-gradient(circle at top, rgba(0,255,255,0.08), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(255,0,255,0.06), transparent 25%),
+      linear-gradient(180deg, #000000, #050814);
+  }
 
-        .terminal-scrollbar::-webkit-scrollbar { width: 4px; }
-        .terminal-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.2); border-radius: 2px; }
-        .terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
-      `}</style>
+  .terminal-scrollbar::-webkit-scrollbar { width: 4px; }
+  .terminal-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.2); border-radius: 2px; }
+  .terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
+` }} />
 
             <div className="predictive-root font-orbitron text-[#e0e3e5] overflow-hidden h-screen relative">
 
@@ -155,9 +156,8 @@ export default function PredictiveEngine() {
 
                     {/* Sidebar container géré avec Tailwind pour l'animation fluide */}
                     <div
-                        className={`transition-all duration-300 ease-in-out h-full overflow-hidden ${
-                            sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
-                        }`}
+                        className={`transition-all duration-300 ease-in-out h-full overflow-hidden ${sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
+                            }`}
                     >
                         <Sidebar pulsePhase={0} />
                     </div>

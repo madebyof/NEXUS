@@ -100,67 +100,68 @@ export default function WeatherFlux() {
     <>
       <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
 
-      <style jsx global>{`
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .font-code { font-family: 'JetBrains Mono', monospace; }
+      <style dangerouslySetInnerHTML={{
+        __html: `
+  .font-orbitron { font-family: 'Orbitron', sans-serif; }
+  .font-code { font-family: 'JetBrains Mono', monospace; }
 
-        @keyframes pulse-cyan {
-          0%, 100% { box-shadow: 0 0 10px rgba(0,255,255,0.2); }
-          50% { box-shadow: 0 0 20px rgba(0,255,255,0.5); }
-        }
-        @keyframes scanlineAnim {
-          0% { top: 0%; }
-          100% { top: 100%; }
-        }
-        .scanline-overlay {
-          position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-          background: linear-gradient(to bottom, transparent 50%, rgba(0,255,255,0.015) 50%);
-          background-size: 100% 4px;
-          pointer-events: none; z-index: 50;
-        }
-        .scanline-beam {
-          position: fixed; top: 0; left: 0; width: 100%; height: 2px;
-          background: linear-gradient(to right, transparent, #00FFFF, transparent);
-          box-shadow: 0 0 15px #00FFFF;
-          opacity: 0.15;
-          animation: scanlineAnim 8s linear infinite;
-          pointer-events: none; z-index: 51;
-        }
-        .angular-cut {
-          clip-path: polygon(0 0, 95% 0, 100% 15%, 100% 100%, 5% 100%, 0 85%);
-        }
-        .angular-cut-header {
-          clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
-        }
-        .glass-panel {
-          background: rgba(0, 0, 0, 0.65);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border: 1px solid rgba(0,255,255,0.15);
-          box-shadow: 0 0 20px rgba(0,255,255,0.04);
-        }
-        .text-glow-cyan { text-shadow: 0 0 8px rgba(0,255,255,0.6); }
-        .text-glow-amber { text-shadow: 0 0 8px rgba(255,184,0,0.6); }
-        .text-glow-emerald { text-shadow: 0 0 8px rgba(0,255,136,0.6); }
-        .grid-bg {
-          background-image:
-            linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-        @keyframes dash { to { stroke-dashoffset: 0; } }
-        .chart-path {
-          stroke-dasharray: 1000;
-          stroke-dashoffset: 1000;
-          animation: dash 5s linear forwards infinite;
-        }
-        .terminal-scrollbar::-webkit-scrollbar { width: 4px; }
-        .terminal-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.2); border-radius: 2px; }
-        .terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
-        @keyframes spin5 { to { transform: rotate(360deg); } }
-        .spin5 { animation: spin5 5s linear infinite; }
-      `}</style>
+  @keyframes scanlineAnim { 0% { top:0%; } 100% { top:100%; } }
+  .scanline-beam-ds {
+    position:fixed;top:0;left:0;width:100%;height:2px;
+    background:linear-gradient(90deg,transparent,#00FFFF,transparent);
+    box-shadow:0 0 15px #00FFFF;opacity:0.15;
+    animation:scanlineAnim 8s linear infinite;
+    pointer-events:none;z-index:101;
+  }
+  .crt-overlay-ds {
+    background:linear-gradient(rgba(18,16,16,0) 50%,rgba(0,0,0,0.15) 50%),
+      linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03));
+    background-size:100% 3px,3px 100%;
+    pointer-events:none;
+  }
+  .glass-panel-ds {
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    background:rgba(0,0,0,0.60);
+    border:1px solid rgba(0,255,255,0.15);
+    box-shadow:inset 0 0 20px rgba(0,255,255,0.04);
+  }
+  .angular-cut-ds {
+    clip-path:polygon(0 0,95% 0,100% 5%,100% 100%,5% 100%,0 95%);
+  }
+  .panel-cut-ds {
+    clip-path:polygon(0 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,0 100%);
+    border-left:1px solid rgba(0,255,255,0.25);
+    border-top:1px solid rgba(0,255,255,0.25);
+    background:rgba(0,0,0,0.70);
+    backdrop-filter:blur(20px);
+  }
+  @keyframes ledBlink { from{opacity:0.3;transform:scale(0.9)} to{opacity:1;transform:scale(1.1)} }
+  @keyframes radarRotate { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .radar-sweep-ds {
+    animation:radarRotate 4s linear infinite;transform-origin:center;
+  }
+  @keyframes glitch {
+    0%{text-shadow:2px 0 #FF3366,-2px 0 #00FFFF}
+    2%{text-shadow:5px 0 #FF3366,-5px 0 #00FFFF;transform:skewX(10deg)}
+    4%{text-shadow:-3px 0 #FF3366,3px 0 #00FFFF;transform:skewX(-5deg)}
+    6%{text-shadow:none;transform:none}
+  }
+  .glitch-text-ds { animation:glitch 2s infinite; }
+  @keyframes laserAnim {
+    0%{transform:translateY(-100%);opacity:0}
+    50%{opacity:0.4}
+    100%{transform:translateY(100vh);opacity:0}
+  }
+  .laser-beam-ds {
+    position:fixed;width:1px;height:20vh;
+    background:linear-gradient(to bottom,transparent,#00FFFF,transparent);
+    animation:laserAnim 4s cubic-bezier(0.4,0,0.6,1) infinite;z-index:10;
+  }
+  .terminal-scroll-ds::-webkit-scrollbar{width:4px}
+  .terminal-scroll-ds::-webkit-scrollbar-track{background:transparent}
+  .terminal-scroll-ds::-webkit-scrollbar-thumb{background:rgba(0,255,255,0.25);border-radius:2px}
+  .terminal-scroll-ds::-webkit-scrollbar-thumb:hover{background:#00FFFF}
+` }} />
 
       {/* CHANGEMENT ICI : flex relative h-screen pour forcer l'alignement horizontal */}
       <div className="font-orbitron bg-black text-[#e0e3e5] overflow-hidden h-screen grid-bg relative flex"
@@ -202,13 +203,12 @@ export default function WeatherFlux() {
 
         {/* Sidebar container */}
         <div
-          className={`transition-all duration-300 ease-in-out h-full overflow-hidden flex-shrink-0 relative z-30 ${
-            sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
-          }`}
+          className={`transition-all duration-300 ease-in-out h-full overflow-hidden flex-shrink-0 relative z-30 ${sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
+            }`}
         >
           <Sidebar pulsePhase={0} />
         </div>
-        
+
         {/* Toggle Sidebar Button */}
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}

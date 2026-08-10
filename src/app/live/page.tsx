@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Sidebar from "@/components/Sidebar"; 
+import Sidebar from "@/components/Sidebar";
 import { ChevronRight } from "lucide-react";
 
 export default function NeuralOS() {
@@ -164,39 +164,40 @@ export default function NeuralOS() {
     <>
       <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
-      <style jsx global>{`
-        .glass-panel {
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          background: rgba(0, 0, 0, 0.55);
-          border: 1px solid rgba(0, 255, 255, 0.15);
-          box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
-        }
-        .nexus-glow {
-          box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
-        }
-        .scan-line {
-          width: 100%;
-          height: 2px;
-          background: linear-gradient(to right, transparent, #00FFFF, transparent);
-          box-shadow: 0 0 15px #00FFFF;
-          position: absolute;
-          top: 0;
-          left: 0;
-          animation: scan 4s linear infinite;
-        }
-        @keyframes scan {
-          0% { top: 0%; opacity: 0; }
-          50% { opacity: 1; }
-          100% { top: 100%; opacity: 0; }
-        }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
-        ::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.3); border-radius: 2px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .font-mono-nexus { font-family: 'JetBrains Mono', monospace; }
-      `}</style>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+  .glass-panel {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+  }
+  .nexus-glow {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  }
+  .scan-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #00FFFF, transparent);
+    box-shadow: 0 0 15px #00FFFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: scan 4s linear infinite;
+  }
+  @keyframes scan {
+    0% { top: 0%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+  ::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.3); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
+  .font-orbitron { font-family: 'Orbitron', sans-serif; }
+  .font-mono-nexus { font-family: 'JetBrains Mono', monospace; }
+` }} />
 
       <div className="font-orbitron bg-[#000000] text-[#e0e3e5] overflow-hidden min-h-screen relative"
         style={{
@@ -236,12 +237,11 @@ export default function NeuralOS() {
         <div className="fixed bottom-20 left-20 w-80 h-80 bg-[#ff00ff]/8 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="flex h-screen overflow-hidden relative z-10">
-          
+
           {/* Sidebar container géré avec Tailwind pour l'animation fluide */}
-          <div 
-            className={`transition-all duration-300 ease-in-out h-full overflow-hidden ${
-              sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
-            }`}
+          <div
+            className={`transition-all duration-300 ease-in-out h-full overflow-hidden ${sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
+              }`}
           >
             <Sidebar pulsePhase={0} />
           </div>
@@ -250,7 +250,7 @@ export default function NeuralOS() {
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className="absolute top-1/2 z-50 w-8 h-16 bg-gradient-to-r from-[#00FFFF22] to-transparent border-y border-r border-[#00FFFF44] rounded-r-lg flex items-center justify-center cursor-pointer hover:from-[#00FFFF44] transition-all transform -translate-y-1/2 pointer-events-auto"
-            style={{ 
+            style={{
               left: sidebarCollapsed ? "0px" : "320px",
               transition: "left 0.3s ease-in-out" // Aligné sur la même durée que le container
             }}

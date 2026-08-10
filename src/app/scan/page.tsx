@@ -132,52 +132,53 @@ export default function NodeAlpha09() {
         <>
             <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
-            <style jsx global>{`
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .font-mono-nexus { font-family: 'JetBrains Mono', monospace; }
+            <style dangerouslySetInnerHTML={{
+                __html: `
+  .font-orbitron { font-family: 'Orbitron', sans-serif; }
+  .font-mono-nexus { font-family: 'JetBrains Mono', monospace; }
 
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        .animate-blink { animation: blink 0.8s infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  .animate-blink { animation: blink 0.8s infinite; }
 
-        @keyframes scanlineAnim {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100vh); }
-        }
-        .scanline-fx {
-          position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-          background: linear-gradient(to right, transparent, #00FFFF, transparent);
-          box-shadow: 0 0 15px #00FFFF;
-          opacity: 0.15;
-          animation: scanlineAnim 4s linear infinite;
-          pointer-events: none;
-        }
+  @keyframes scanlineAnim {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+  .scanline-fx {
+    position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(to right, transparent, #00FFFF, transparent);
+    box-shadow: 0 0 15px #00FFFF;
+    opacity: 0.15;
+    animation: scanlineAnim 4s linear infinite;
+    pointer-events: none;
+  }
 
-        .terminal-scrollbar::-webkit-scrollbar { width: 4px; }
-        .terminal-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.2); border-radius: 2px; }
-        .terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
+  .terminal-scrollbar::-webkit-scrollbar { width: 4px; }
+  .terminal-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.2); border-radius: 2px; }
+  .terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
 
-        .glass-panel {
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          background: rgba(0, 0, 0, 0.55);
-          border: 1px solid rgba(0, 255, 255, 0.15);
-          box-shadow: 0 0 20px rgba(0, 255, 255, 0.04);
-        }
+  .glass-panel {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.04);
+  }
 
-        .node-alpha-root {
-          background-color: #000000;
-          background-image:
-            radial-gradient(circle at top, rgba(0,255,255,0.08), transparent 30%),
-            radial-gradient(circle at bottom right, rgba(255,0,255,0.06), transparent 25%),
-            linear-gradient(180deg, #000000, #050814),
-            radial-gradient(#ffffff05 1px, transparent 1px);
-          background-size: auto, auto, auto, 20px 20px;
-        }
-      `}</style>
+  .node-alpha-root {
+    background-color: #000000;
+    background-image:
+      radial-gradient(circle at top, rgba(0,255,255,0.08), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(255,0,255,0.06), transparent 25%),
+      linear-gradient(180deg, #000000, #050814),
+      radial-gradient(#ffffff05 1px, transparent 1px);
+    background-size: auto, auto, auto, 20px 20px;
+  }
+` }} />
 
             <div className="node-alpha-root font-orbitron text-[#e0e3e5] overflow-hidden h-screen relative flex">
-                
+
                 {/* Inclusion de la Sidebar */}
                 <Sidebar />
 

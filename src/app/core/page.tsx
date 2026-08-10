@@ -97,18 +97,18 @@ export default function SystemCore() {
 
   const warningBg = warningState === 'critical'
     ? 'rgba(255,51,102,0.1)' : warningState === 'warn'
-    ? 'rgba(255,184,0,0.07)' : 'transparent';
+      ? 'rgba(255,184,0,0.07)' : 'transparent';
   const warningBorder = warningState === 'critical'
     ? '#FF3366' : warningState === 'warn'
-    ? '#FFB800' : 'rgba(58,73,75,0.4)';
+      ? '#FFB800' : 'rgba(58,73,75,0.4)';
   const warningText = warningState === 'critical'
     ? 'CRITICAL: SYSTEM INSTABILITY DETECTED. REDUCE LOAD IMMEDIATELY.'
     : warningState === 'warn'
-    ? 'WARNING: Thresholds approaching maximum capacity.'
-    : 'Environment stable. All parameters within safe margins.';
+      ? 'WARNING: Thresholds approaching maximum capacity.'
+      : 'Environment stable. All parameters within safe margins.';
   const warningTextColor = warningState === 'critical'
     ? '#FF3366' : warningState === 'warn'
-    ? '#FFB800' : 'rgba(132,148,149,0.8)';
+      ? '#FFB800' : 'rgba(132,148,149,0.8)';
 
   const sidebarWidth = sidebarCollapsed ? '0px' : '320px';
 
@@ -116,78 +116,79 @@ export default function SystemCore() {
     <>
       <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
 
-      <style jsx global>{`
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .font-code { font-family: 'JetBrains Mono', monospace; }
+      <style dangerouslySetInnerHTML={{
+        __html: `
+  .font-orbitron { font-family: 'Orbitron', sans-serif; }
+  .font-code { font-family: 'JetBrains Mono', monospace; }
 
-        .glass-panel-sc {
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          background: rgba(0,0,0,0.60);
-          border: 1px solid rgba(0,255,255,0.15);
-          box-shadow: 0 0 20px rgba(0,255,255,0.04);
-        }
-        .angular-panel-sc {
-          clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 95% 100%, 0% 100%);
-          border-left: 2px solid #00FFFF;
-        }
-        @keyframes scanlineSC { 0%{top:0%} 100%{top:100%} }
-        .scanline-sc {
-          width:100%;height:2px;
-          background:linear-gradient(to right,transparent,#00FFFF,transparent);
-          box-shadow:0 0 15px #00FFFF;
-          position:fixed;top:0;left:0;pointer-events:none;
-          animation:scanlineSC 8s linear infinite;opacity:0.15;z-index:200;
-        }
-        @keyframes recalibrate {
-          0%{filter:brightness(5) saturate(2)}
-          50%{filter:invert(1)}
-          100%{filter:brightness(1) saturate(1)}
-        }
-        .flash-recalibrate-sc { animation:recalibrate 0.4s ease-out; }
-        .matrix-text-sc { text-shadow:0 0 5px #00FF88; }
-        .glow-cyan-sc { box-shadow:0 0 15px rgba(0,255,255,0.35); }
-        .glow-green-sc { box-shadow:0 0 15px rgba(0,255,136,0.35); }
+  .glass-panel-sc {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.60);
+    border: 1px solid rgba(0,255,255,0.15);
+    box-shadow: 0 0 20px rgba(0,255,255,0.04);
+  }
+  .angular-panel-sc {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 95% 100%, 0% 100%);
+    border-left: 2px solid #00FFFF;
+  }
+  @keyframes scanlineSC { 0%{top:0%} 100%{top:100%} }
+  .scanline-sc {
+    width:100%;height:2px;
+    background:linear-gradient(to right,transparent,#00FFFF,transparent);
+    box-shadow:0 0 15px #00FFFF;
+    position:fixed;top:0;left:0;pointer-events:none;
+    animation:scanlineSC 8s linear infinite;opacity:0.15;z-index:200;
+  }
+  @keyframes recalibrate {
+    0%{filter:brightness(5) saturate(2)}
+    50%{filter:invert(1)}
+    100%{filter:brightness(1) saturate(1)}
+  }
+  .flash-recalibrate-sc { animation:recalibrate 0.4s ease-out; }
+  .matrix-text-sc { text-shadow:0 0 5px #00FF88; }
+  .glow-cyan-sc { box-shadow:0 0 15px rgba(0,255,255,0.35); }
+  .glow-green-sc { box-shadow:0 0 15px rgba(0,255,136,0.35); }
 
-        .terminal-scroll-sc::-webkit-scrollbar{width:4px}
-        .terminal-scroll-sc::-webkit-scrollbar-track{background:transparent}
-        .terminal-scroll-sc::-webkit-scrollbar-thumb{background:rgba(0,255,255,0.25);border-radius:2px}
-        .terminal-scroll-sc::-webkit-scrollbar-thumb:hover{background:#00FFFF}
+  .terminal-scroll-sc::-webkit-scrollbar{width:4px}
+  .terminal-scroll-sc::-webkit-scrollbar-track{background:transparent}
+  .terminal-scroll-sc::-webkit-scrollbar-thumb{background:rgba(0,255,255,0.25);border-radius:2px}
+  .terminal-scroll-sc::-webkit-scrollbar-thumb:hover{background:#00FFFF}
 
-        input[type=range].nexus-slider {
-          -webkit-appearance:none;appearance:none;
-          height:4px;background:rgba(58,73,75,0.3);border-radius:2px;outline:none;width:100%;
-        }
-        input[type=range].nexus-slider::-webkit-slider-thumb {
-          -webkit-appearance:none;appearance:none;
-          width:14px;height:14px;border-radius:50%;
-          background:#00FFFF;cursor:pointer;
-          box-shadow:0 0 8px rgba(0,255,255,0.8);
-        }
-        input[type=range].nexus-slider.green::-webkit-slider-thumb{background:#00FF88;box-shadow:0 0 8px rgba(0,255,136,0.8);}
-        input[type=range].nexus-slider.amber::-webkit-slider-thumb{background:#FFB800;box-shadow:0 0 8px rgba(255,184,0,0.8);}
-        input[type=range].nexus-slider.red::-webkit-slider-thumb{background:#FF3366;box-shadow:0 0 8px rgba(255,51,102,0.8);}
+  input[type=range].nexus-slider {
+    -webkit-appearance:none;appearance:none;
+    height:4px;background:rgba(58,73,75,0.3);border-radius:2px;outline:none;width:100%;
+  }
+  input[type=range].nexus-slider::-webkit-slider-thumb {
+    -webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;
+    background:#00FFFF;cursor:pointer;
+    box-shadow:0 0 8px rgba(0,255,255,0.8);
+  }
+  input[type=range].nexus-slider.green::-webkit-slider-thumb{background:#00FF88;box-shadow:0 0 8px rgba(0,255,136,0.8);}
+  input[type=range].nexus-slider.amber::-webkit-slider-thumb{background:#FFB800;box-shadow:0 0 8px rgba(255,184,0,0.8);}
+  input[type=range].nexus-slider.red::-webkit-slider-thumb{background:#FF3366;box-shadow:0 0 8px rgba(255,51,102,0.8);}
 
-        input[type=text].nexus-input, input[type=password].nexus-input {
-          background:rgba(0,0,0,0.5);
-          border:1px solid rgba(58,73,75,0.4);
-          color:#e1fdff;
-          font-family:'JetBrains Mono',monospace;
-          padding:8px 12px;width:100%;outline:none;
-          transition:border-color 0.2s;
-          border-radius:4px;
-        }
-        input[type=text].nexus-input:focus,
-        input[type=password].nexus-input:focus {
-          border-color:#00FFFF;box-shadow:0 0 8px rgba(0,255,255,0.2);
-        }
-        input[type=text].nexus-cmd {
-          background:transparent;border:none;outline:none;
-          color:#e1fdff;font-family:'JetBrains Mono',monospace;font-size:11px;
-          text-transform:uppercase;flex:1;
-        }
-        input[type=text].nexus-cmd::placeholder{color:rgba(132,148,149,0.3)}
-      `}</style>
+  input[type=text].nexus-input, input[type=password].nexus-input {
+    background:rgba(0,0,0,0.5);
+    border:1px solid rgba(58,73,75,0.4);
+    color:#e1fdff;
+    font-family:'JetBrains Mono',monospace;
+    padding:8px 12px;width:100%;outline:none;
+    transition:border-color 0.2s;
+    border-radius:4px;
+  }
+  input[type=text].nexus-input:focus,
+  input[type=password].nexus-input:focus {
+    border-color:#00FFFF;box-shadow:0 0 8px rgba(0,255,255,0.2);
+  }
+  input[type=text].nexus-cmd {
+    background:transparent;border:none;outline:none;
+    color:#e1fdff;font-family:'JetBrains Mono',monospace;font-size:11px;
+    text-transform:uppercase;flex:1;
+  }
+  input[type=text].nexus-cmd::placeholder{color:rgba(132,148,149,0.3)}
+` }} />
 
       {/* ROOT — h-screen + flex pour sidebar/main côte à côte */}
       <div
@@ -334,13 +335,12 @@ export default function SystemCore() {
                   </div>
 
                   <button ref={connectionBtnRef} onClick={testConnection}
-                    className={`w-full mt-4 py-3 font-orbitron text-[11px] font-bold tracking-widest uppercase transition-all rounded-lg ${
-                      connStatus === 'success'
+                    className={`w-full mt-4 py-3 font-orbitron text-[11px] font-bold tracking-widest uppercase transition-all rounded-lg ${connStatus === 'success'
                         ? 'bg-[#00FF88] text-black glow-green-sc'
                         : connStatus === 'connecting'
-                        ? 'border border-[#00FFFF44] text-[#00FFFF88] opacity-50 cursor-not-allowed'
-                        : 'border border-[#00FFFF] text-[#00FFFF] hover:bg-[#00FFFF] hover:text-black glow-cyan-sc'
-                    }`}
+                          ? 'border border-[#00FFFF44] text-[#00FFFF88] opacity-50 cursor-not-allowed'
+                          : 'border border-[#00FFFF] text-[#00FFFF] hover:bg-[#00FFFF] hover:text-black glow-cyan-sc'
+                      }`}
                     disabled={connStatus === 'connecting'}>
                     {connStatus === 'success' ? 'SUCCESS: LINK ESTABLISHED' : connStatus === 'connecting' ? 'CONNECTING...' : 'Test Connection'}
                   </button>

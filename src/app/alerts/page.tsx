@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
-import Sidebar from "@/components/Sidebar"; 
+import Sidebar from "@/components/Sidebar";
 
 export default function QuantumAlerts() {
   const bodyBgRef = useRef<HTMLDivElement>(null);
@@ -55,62 +55,63 @@ export default function QuantumAlerts() {
     <>
       <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-      <style jsx global>{`
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+      <style dangerouslySetInnerHTML={{
+        __html: `
+  .font-orbitron { font-family: 'Orbitron', sans-serif; }
+  .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
 
-        .custom-scrollbar::-webkit-scrollbar { width: 3px; height: 3px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.3); border-radius: 0; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0,255,255,0.6); }
+  .custom-scrollbar::-webkit-scrollbar { width: 3px; height: 3px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.3); border-radius: 0; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0,255,255,0.6); }
 
-        .hex-overlay-qa {
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.32v12.36l11 6.35 11-6.35V17.32L14 10.97 3 17.32z' fill='%2300FFFF' fill-opacity='0.04' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
+  .hex-overlay-qa {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.32v12.36l11 6.35 11-6.35V17.32L14 10.97 3 17.32z' fill='%2300FFFF' fill-opacity='0.04' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
 
-        @keyframes pulse-red {
-          0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.4); }
-          70% { box-shadow: 0 0 0 10px rgba(255, 51, 102, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
-        }
-        .animate-pulse-red { animation: pulse-red 2s infinite; }
+  @keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 51, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+  }
+  .animate-pulse-red { animation: pulse-red 2s infinite; }
 
-        .glow-cyan { text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
-        .glow-magenta { text-shadow: 0 0 8px rgba(255, 0, 255, 0.6); }
+  .glow-cyan { text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
+  .glow-magenta { text-shadow: 0 0 8px rgba(255, 0, 255, 0.6); }
 
-        .glass-card {
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          background: rgba(0, 0, 0, 0.55);
-          border: 1px solid rgba(0, 255, 255, 0.15);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  .glass-card {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-        .scanline-qa {
-          width: 100%;
-          height: 2px;
-          background: linear-gradient(to right, transparent, #00FFFF, transparent);
-          box-shadow: 0 0 15px #00FFFF;
-          opacity: 0.15;
-          position: absolute;
-          top: 0;
-          left: 0;
-          animation: scanQa 8s linear infinite;
-          pointer-events: none;
-        }
-        @keyframes scanQa {
-          0% { top: 0; }
-          100% { top: 100%; }
-        }
+  .scanline-qa {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #00FFFF, transparent);
+    box-shadow: 0 0 15px #00FFFF;
+    opacity: 0.15;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: scanQa 8s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes scanQa {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
 
-        .qa-root {
-          background-color: #000000;
-          background-image:
-            radial-gradient(circle at top, rgba(0,255,255,0.08), transparent 30%),
-            radial-gradient(circle at bottom right, rgba(255,0,255,0.06), transparent 25%),
-            linear-gradient(180deg, #000000, #050814);
-        }
-      `}</style>
+  .qa-root {
+    background-color: #000000;
+    background-image:
+      radial-gradient(circle at top, rgba(0,255,255,0.08), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(255,0,255,0.06), transparent 25%),
+      linear-gradient(180deg, #000000, #050814);
+  }
+` }} />
 
       <div ref={bodyBgRef} className="qa-root font-orbitron text-[#e3e2e3] overflow-hidden h-screen relative selection:bg-[#00FFFF]/30">
 
@@ -132,10 +133,9 @@ export default function QuantumAlerts() {
         <div className="relative flex h-screen overflow-hidden z-10">
 
           {/* SIDEBAR INTEGRATION - Animation de largeur fluide sans Layout Shift brutal */}
-          <div 
-            className={`transition-all duration-300 ease-in-out h-full overflow-hidden shrink-0 border-r border-[#00FFFF22] ${
-              sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
-            }`}
+          <div
+            className={`transition-all duration-300 ease-in-out h-full overflow-hidden shrink-0 border-r border-[#00FFFF22] ${sidebarCollapsed ? "w-0 opacity-0" : "w-80 opacity-100"
+              }`}
           >
             <Sidebar pulsePhase={0} />
           </div>
@@ -144,7 +144,7 @@ export default function QuantumAlerts() {
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className="absolute top-1/2 z-50 w-6 h-16 bg-gradient-to-r from-black/80 to-transparent border-y border-r border-[#00FFFF44] rounded-r-lg flex items-center justify-center cursor-pointer hover:from-[#00FFFF11] transition-all transform -translate-y-1/2 pointer-events-auto"
-            style={{ 
+            style={{
               left: sidebarCollapsed ? "0px" : "320px",
               transition: "left 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
             }}
