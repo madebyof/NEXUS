@@ -17,9 +17,10 @@ export default function NeuralOS() {
       document.body.appendChild(script);
 
       script.onload = () => {
-        if (!containerRef.current || !window.THREE) return;
+        const win = window as any;
+        if (!containerRef.current || !win.THREE) return;
 
-        const THREE = window.THREE;
+        const THREE = win.THREE;
         const container = containerRef.current;
         let width = container.clientWidth || window.innerWidth;
         let height = container.clientHeight || window.innerHeight;
